@@ -1,16 +1,16 @@
 import { useState } from "react"; 
-// import "./Body.css"; 
+import "./Body.css"; 
 
 function Body() {
-    console.log("Update!")
-    const [count, setCount] = useState(0);
-    const onIncrease = () => {
-        setCount(count + 1);
+    const [text, setText] = useState("");
+    const handleOnChange = (e) => {
+            setText(e.target.value);
     };
+
     return (
-    <div>
-        <h2>{count}</h2>
-        <button onClick={onIncrease}>+</button>
+    <div className="body">
+        <input value={text} onChange={handleOnChange} />
+        <div>{text}</div>
     </div>
     );
 }
