@@ -2,15 +2,15 @@ import { useState } from "react";
 import "./Body.css"; 
 
 function Body() {
-    const [date, setDate] = useState("");
+    const [text, setText] = useState("");
     const handleOnChange = (e) => {
         console.log("변경된 값: ", e.target.value);
-        setDate(e.target.value);
+        setText(e.target.value);
     };
 
     return (
-    <div>
-        <input type="date" value={date} onChange={handleOnChange} />
+    <div className="body">
+        <textarea value={text} onChange={handleOnChange} />
     </div>
     );
 }
