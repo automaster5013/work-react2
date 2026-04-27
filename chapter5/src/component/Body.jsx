@@ -1,13 +1,18 @@
-import "./Body.css"; 
+import { useState } from "react"; 
+// import "./Body.css"; 
 
-function Body({children}) {
-    console.log(children);
+function Body() {
+    console.log("Update!")
+    const [count, setCount] = useState(0);
+    const onIncrease = () => {
+        setCount(count + 1);
+    };
     return (
-    <div className="body">
-        {children}
+    <div>
+        <h2>{count}</h2>
+        <button onClick={onIncrease}>+</button>
     </div>
     );
 }
-
 export default Body;
 
