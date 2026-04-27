@@ -1,18 +1,29 @@
 import { useState } from "react"; 
 import "./Body.css"; 
 
-function Body() {
-    const [text, setText] = useState("");
-    const handleOnChange = (e) => {
-        console.log("변경된 값: ", e.target.value);
-        setText(e.target.value);
-    };
+function Viewer() {
+    console.log("viewer component update!");
+    return <div>Viewer</div>;
+}
 
+function Body() {
+    const [number, setNumber] = useState(0);
+    const onIncrease = () => {
+        setNumber (number + 1);
+    };
+    const onDecrease = () => {
+        setNumber (number - 1);
+    };
     return (
     <div className="body">
-        <textarea value={text} onChange={handleOnChange} />
+        <h2>{number}</h2>
+        <Viewer />
+        <div>
+            <button onClick={onDecrease}>-</button>
+            <button onClick={onIncrease}>+</button>
+        </div>
     </div>
-    );
+);
 }
 export default Body;
 
