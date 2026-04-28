@@ -24,9 +24,14 @@ function App() {
   });
 
   useEffect(() => {
-    setInterval(() => {
+    const intervalID = setInterval(() => {
       console.log("깜빡");
     }, 1000);
+
+    return () => {
+      console.log("클린업");
+      clearInterval(intervalID);
+    };
   });
 
   return (
