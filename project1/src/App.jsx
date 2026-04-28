@@ -24,8 +24,10 @@ function App() {
   });
 
   useEffect(() => {
-    console.log("컴포넌트 마운트");
-  }, []);
+    setInterval(() => {
+      console.log("깜빡");
+    }, 1000);
+  });
 
   return (
     <div className="App">
