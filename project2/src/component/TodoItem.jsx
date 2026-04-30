@@ -4,8 +4,9 @@ const TodoItem = ({ id, content, isDone, createdDate, onUpdate, onDelete }) => {
   const onChangeCheckbox = () => {
     onUpdate(id);
   };
-    const onClickDelete = () => {
-    onDelete(id);
+  
+  const onClickDelete = () => {
+  onDelete(id);
   };
 
   return (
