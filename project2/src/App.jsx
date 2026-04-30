@@ -1,9 +1,8 @@
-import { useReducer } from "react";
+import React, { useCallback, useReducer, useRef } from "react";
 import "./App.css";
 import Header from "./component/Header";
 import TodoEditor from "./component/TodoEditor";
 import TodoList from "./component/TodoList";
-import { useState, useRef } from "react";
 import TestComp from "./component/TestComp";
 
 const mockTodo = [
@@ -50,6 +49,8 @@ function reducer(state, action) {
   }
 }
 
+const TodoContext = React.createContext();
+
 function App() {
   const [todo, dispatch] = useReducer(reducer, mockTodo);
   const idRef = useRef(3);
@@ -67,20 +68,20 @@ function App() {
     idRef.current += 1;
   };
 
-  const onUpdate = (targetId) => {
+  const onUpdate = useCallback((targetId) => {
     dispatch({
       type: "UPDATE",
       targetId,
     });
-    idRef.current += 1;
-  };
+    // idRef.current += 1;
+  }, []);
 
-  const onDelete = (targetId) => {
+  const onDelete = useCallback((targetId) => {
     dispatch({
       type: "DELETE",
       targetId,
     });
-  };
+  }, []);
 
   return (
     <div className="App">
