@@ -73,7 +73,6 @@ function App() {
       type: "UPDATE",
       targetId,
     });
-    // idRef.current += 1;
   }, []);
 
   const onDelete = useCallback((targetId) => {
@@ -85,10 +84,11 @@ function App() {
 
   return (
     <div className="App">
-      <TestComp />
       <Header />
-      <TodoEditor onCreate={onCreate} />
-      <TodoList todo={todo} onUpdate={onUpdate} onDelete={onDelete} />
+      <TodoContext.Provider value={{ todo, onCreate, onUpdate, onDelete }}>
+        <TodoEditor />
+        <TodoList />
+      </TodoContext.Provider>
     </div>
   );
 }
