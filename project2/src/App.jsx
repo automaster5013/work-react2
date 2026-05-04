@@ -1,9 +1,8 @@
-import React, { useCallback, useReducer, useRef } from "react";
+import React, { useMemo, useReducer, useCallback, useRef } from "react";
 import "./App.css";
 import Header from "./component/Header";
 import TodoEditor from "./component/TodoEditor";
 import TodoList from "./component/TodoList";
-import TestComp from "./component/TestComp";
 
 const mockTodo = [
   {
@@ -41,7 +40,8 @@ function reducer(state, action) {
   }
 }
 
-export const TodoContext = React.createContext();
+export const TodoStateContext = React.createContext();
+export const TodoDispatchContext = React.createContext();
 
 function App() {
   // const [todo, setTodo] = useState(mockTodo);
@@ -83,13 +83,19 @@ function App() {
     });
   }, []);
 
+  const memoizedDispatches = useMemo(() => {
+    return { onCreate, onUpdate, onDelete };
+  }, []);
+
   return (
     <div className="App">
       <Header />
-      <TodoContext.Provider value={{ todo, onCreate, onUpdate, onDelete }}>
-        <TodoEditor />
-        <TodoList />
-      </TodoContext.Provider>
+      <TodoStateContext.Provider value={todo}>
+        <TodoDispatchContext.Provider value={memoizedDispatches}>
+          <TodoEditor />
+          <TodoList />
+        </TodoDispatchContext.Provider>
+      </TodoStateContext.Provider>
     </div>
   );
 }
