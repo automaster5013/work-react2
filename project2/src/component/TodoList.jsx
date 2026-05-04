@@ -3,9 +3,8 @@ import { TodoContext } from "../App";
 import TodoItem from "./TodoItem";
 import "./TodoList.css";
 
-const TodoList = ({ todo = [], onUpdate, onDelete }) => {
-  const storeData = useContext(TodoContext);
-  console.log(storeData);
+const TodoList = () => {
+  const { todo, onUpdate, onDelete } = useContext(TodoContext);
   const [search, setSearch] = useState("");
   const onChangeSearch = (e) => {
     setSearch(e.target.value);
@@ -18,7 +17,7 @@ const TodoList = ({ todo = [], onUpdate, onDelete }) => {
         );
   };
   const analyzeTodo = useMemo(() => {
-    console.log("analyzeTodo 함수 호출");
+    // console.log("analyzeTodo() 함수 호출");
     const totalCount = todo.length;
     const doneCount = todo.filter((it) => it.isDone).length;
     const notDoneCount = totalCount - doneCount;
@@ -28,12 +27,11 @@ const TodoList = ({ todo = [], onUpdate, onDelete }) => {
       notDoneCount,
     };
   }, [todo]);
-
   const { totalCount, doneCount, notDoneCount } = analyzeTodo;
 
   return (
     <div className="TodoList">
-      <h4>Todo List ☘️</h4>
+      <h4>Todo List☘️</h4>
       <div>
         <div>총개수: {totalCount}</div>
         <div>완료된 할 일: {doneCount}</div>
