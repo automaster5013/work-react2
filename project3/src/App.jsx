@@ -107,7 +107,7 @@ function App() {
   };
 
   if (!isDataLoaded) {
-    return <div>데이터를 불러오는 중입니다</div>;
+    return <div>데이터를 불러오는 중입니다...</div>;
   } else {
     return (
       <DiaryStateContext.Provider value={data}>
@@ -123,7 +123,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/new" element={<New />} />
               <Route path="/diary/:id" element={<Diary />} />
-              <Route path="/edit/:id" element={<Edit />} />
+              <Route path="/edit" element={<Edit />} />
             </Routes>
           </div>
         </DiaryDispatchContext.Provider>
