@@ -7,7 +7,6 @@ import DiaryList from "../component/DiaryList";
 
 const Home = () => {
   const data = useContext(DiaryStateContext);
-
   const [pivotDate, setPivotDate] = useState(new Date());
   const [filteredData, setFilteredData] = useState([]);
 
