@@ -1,9 +1,4 @@
-import React, {
-  useReducer,
-  useRef,
-  useEffect,
-  useState,
-} from "react";
+import React, { useReducer, useRef, useEffect, useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -42,15 +37,11 @@ function reducer(state, action) {
     }
     case "UPDATE": {
       return state.map((it) =>
-        String(it.id) === String(action.data.id)
-          ? { ...action.data }
-          : it
+        String(it.id) === String(action.data.id) ? { ...action.data } : it,
       );
     }
     case "DELETE": {
-      return state.filter(
-        (it) => String(it.id) !== String(action.targetId)
-      );
+      return state.filter((it) => String(it.id) !== String(action.targetId));
     }
     default: {
       return state;
