@@ -1,4 +1,9 @@
-import React, { useReducer, useRef, useEffect, useState } from "react";
+import React, {
+  useReducer,
+  useRef,
+  useEffect,
+  useState,
+} from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -37,11 +42,15 @@ function reducer(state, action) {
     }
     case "UPDATE": {
       return state.map((it) =>
-        String(it.id) === String(action.data.id) ? { ...action.data } : it,
+        String(it.id) === String(action.data.id)
+          ? { ...action.data }
+          : it
       );
     }
     case "DELETE": {
-      return state.filter((it) => String(it.id) !== String(action.targetId));
+      return state.filter(
+        (it) => String(it.id) !== String(action.targetId)
+      );
     }
     default: {
       return state;
@@ -98,7 +107,7 @@ function App() {
   };
 
   if (!isDataLoaded) {
-    return <div>데이터를 불러오는 중입니다...</div>;
+    return <div>데이터를 불러오는 중입니다</div>;
   } else {
     return (
       <DiaryStateContext.Provider value={data}>
@@ -114,7 +123,7 @@ function App() {
               <Route path="/" element={<Home />} />
               <Route path="/new" element={<New />} />
               <Route path="/diary/:id" element={<Diary />} />
-              <Route path="/edit" element={<Edit />} />
+              <Route path="/edit/:id" element={<Edit />} />
             </Routes>
           </div>
         </DiaryDispatchContext.Provider>

@@ -7,7 +7,6 @@ import { DiaryDispatchContext } from "../App";
 import { setPageTitle } from "../util";
 
 const New = () => {
-  // return <div>New 페이지입니다</div>;
   const { onCreate } = useContext(DiaryDispatchContext);
 
   useEffect(() => {
@@ -35,4 +34,5 @@ const New = () => {
     </div>
   );
 };
+
 export default New;

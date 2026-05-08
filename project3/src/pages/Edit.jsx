@@ -8,7 +8,6 @@ import Editor from "../component/Editor";
 import { setPageTitle } from "../util";
 
 const Edit = () => {
-  // return <div>Edit 페이지입니다</div>;
   const { onUpdate, onDelete } = useContext(DiaryDispatchContext);
   const { id } = useParams();
   const data = useDiary(id);
@@ -23,7 +22,9 @@ const Edit = () => {
   };
 
   const onClickDelete = () => {
-    if (window.confirm("일기를 정말 삭제할까요? 다시 복구되지 않아요!")) {
+    if (
+      window.confirm("일기를 정말 삭제할까요? 다시 복구되지 않아요!")
+    ) {
       onDelete(id);
       navigate("/", { replace: true });
     }
