@@ -9,6 +9,7 @@ import { useEffect } from "react";
 const Diary = () => {
   const { id } = useParams();
   const data = useDiary(id);
+  console.log(data);
   const navigate = useNavigate();
 
   useEffect(() => {
