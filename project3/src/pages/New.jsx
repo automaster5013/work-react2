@@ -2,22 +2,15 @@ import { useNavigate } from "react-router-dom";
 import Button from "../component/Button";
 import Header from "../component/Header";
 import Editor from "../component/Editor";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { DiaryDispatchContext } from "../App";
-import { setPageTitle } from "../util";
 
 const New = () => {
-  const { onCreate } = useContext(DiaryDispatchContext);
-
-  useEffect(() => {
-    setPageTitle("새 일기 쓰기");
-  }, []);
-
   const navigate = useNavigate();
+  const { onCreate } = useContext(DiaryDispatchContext);
   const goBack = () => {
     navigate(-1);
   };
-
   const onSubmit = (data) => {
     const { date, content, emotionId } = data;
     onCreate(date, content, emotionId);
@@ -34,5 +27,4 @@ const New = () => {
     </div>
   );
 };
-
 export default New;

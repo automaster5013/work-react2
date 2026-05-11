@@ -1,14 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { getEmotionImgById } from "../util";
-import "./DiaryItem.css";
 import Button from "./Button";
-import { memo } from "react";
+import "./DiaryItem.css";
 
 const DiaryItem = ({ id, emotionId, content, date }) => {
   const navigate = useNavigate();
   const goDetail = () => {
     navigate(`/diary/${id}`);
   };
+
   const goEdit = () => {
     navigate(`/edit/${id}`);
   };
@@ -19,10 +19,7 @@ const DiaryItem = ({ id, emotionId, content, date }) => {
         onClick={goDetail}
         className={`img_section img_section_${emotionId}`}
       >
-        <img
-          alt={`emotion${emotionId}`}
-          src={getEmotionImgById(emotionId)}
-        />
+        <img alt={`emotion${emotionId}`} src={getEmotionImgById(emotionId)} />
       </div>
       <div onClick={goDetail} className="info_section">
         <div className="date_wrapper">
@@ -36,4 +33,4 @@ const DiaryItem = ({ id, emotionId, content, date }) => {
     </div>
   );
 };
-export default memo(DiaryItem);
+export default DiaryItem;

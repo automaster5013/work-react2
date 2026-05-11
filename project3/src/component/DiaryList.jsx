@@ -1,18 +1,26 @@
-import { useEffect, useState } from "react";
-import Button from "./Button";
 import "./DiaryList.css";
+import Button from "./Button";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DiaryItem from "./DiaryItem";
 
 const sortOptionList = [
   { value: "latest", name: "최신순" },
-  { value: "oldest", name: "오래된 순" },
+  { value: "oldest", name: "오래된순" },
 ];
 
 const DiaryList = ({ data }) => {
   const [sortType, setSortType] = useState("latest");
   const [sortedData, setSortedData] = useState([]);
   const navigate = useNavigate();
+
+  const onChangeSortType = (e) => {
+    setSortType(e.target.value);
+  };
+
+  const onClickNew = () => {
+    navigate("/new");
+  };
 
   useEffect(() => {
     const compare = (a, b) => {
@@ -27,14 +35,6 @@ const DiaryList = ({ data }) => {
     setSortedData(copyList);
   }, [data, sortType]);
 
-  const onChangeSortType = (e) => {
-    setSortType(e.target.value);
-  };
-
-  const onClickNew = () => {
-    navigate("/new");
-  };
-
   return (
     <div className="DiaryList">
       <div className="menu_wrapper">
@@ -47,6 +47,7 @@ const DiaryList = ({ data }) => {
             ))}
           </select>
         </div>
+
         <div className="right_col">
           <Button
             type={"positive"}
