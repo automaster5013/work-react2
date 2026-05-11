@@ -20,7 +20,7 @@ const Home = () => {
   };
 
   useEffect(() => {
-    setPageTitle("Winterload의 감정 일기장");
+    setPageTitle("Winterlood의 감정 일기장");
     if (data.length >= 1) {
       const { beginTimeStamp, endTimeStamp } = getMonthRangeByDate(pivotDate);
       setFilteredData(
