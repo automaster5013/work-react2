@@ -1,9 +1,4 @@
-import React, {
-  useReducer,
-  useRef,
-  useEffect,
-  useState,
-} from "react";
+import React, { useReducer, useRef, useEffect, useState } from "react";
 import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
@@ -38,19 +33,23 @@ function reducer(state, action) {
       return action.data;
     }
     case "CREATE": {
-      return [action.data, ...state];
+      const newState = [action.data, ...state];
+      localStorage.setItem("diary", JSON.stringify(newState));
+      return newState;
     }
     case "UPDATE": {
-      return state.map((it) =>
-        String(it.id) === String(action.data.id)
-          ? { ...action.data }
-          : it
+      const newState = state.map((it) =>
+        String(it.id) === String(action.data.id) ? { ...action.data } : it,
       );
+      localStorage.setItem("diary", JSON.stringify(newState));
+      return newState;
     }
     case "DELETE": {
-      return state.filter(
-        (it) => String(it.id) !== String(action.targetId)
+      const newState = state.filter(
+        (it) => String(it.id) !== String(action.targetId),
       );
+      localStorage.setItem("diary", JSON.stringify(newState));
+      return newState;
     }
     default: {
       return state;
